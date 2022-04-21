@@ -130,7 +130,7 @@ $ npm install
 
 4. create the application set
 
-   1. create router. `src/router/${server-name}.js`, and write a routes of your service
+   1. create router. `src/router/${server-name}.js` and write a routes and relations `src/router/index.js`, `src/index.js` of your service
 
       ```javascript
       const Router = require('@src/library/router');
