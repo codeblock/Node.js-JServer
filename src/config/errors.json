@@ -1,0 +1,25 @@
+{
+  "OK": { "code": 0, "message": "OK", "description": "normal status" },
+
+  "// 10000 ~      ": "------------------------------------------- Application Error",
+  "APPL_ERROR_OCCURRED": { "code": 10000, "message": "ERROR_OCCURRED", "description": "something has wrong. verify the log" },
+  "APPL_ERROR_UNCOMPLETED": { "code": 10001, "message": "ERROR_UNCOMPLETED", "description": "some works are uncompleted. verify the log" },
+
+  "APPL_PROCESSED_REQUEST": { "code": 10100, "message": "PROCESSED_REQUEST", "description": "request was processed already" },
+  "APPL_PROCESSED_EVENT": { "code": 10101, "message": "PROCESSED_EVENT", "description": "event was processed already" },
+
+  "APPL_EXPIRED_REQUEST": { "code": 10200, "message": "EXPIRED_REQUEST", "description": "request has been expired" },
+  "APPL_EXPIRED_EVENT": { "code": 10201, "message": "EXPIRED_EVENT", "description": "event has been expired" },
+
+  "APPL_ACCESS_DENIED": { "code": 10300, "message": "ACCESS_DENIED", "description": "cannot access" },
+  "APPL_ACCESS_DENIED_VERSION": { "code": 10301, "message": "ACCESS_DENIED_VERSION", "description": "that is old version" },
+  "APPL_ACCESS_DENIED_MAINTENANCE": { "code": 10302, "message": "ACCESS_DENIED_MAINTENANCE", "description": "now is maintenance time" },
+
+  "APPL_INVALID_RESPONSE": { "code": 20000, "message": "INVALID_RESPONSE", "description": "response is invalid" },
+
+  "APPL_INVALID_REQUEST": { "code": 30000, "message": "INVALID_REQUEST", "description": "request is invalid" },
+  "APPL_INVALID_REQUEST_PARAM": { "code": 30001, "message": "INVALID_REQUEST_PARAM", "description": "request parameter is invalid" },
+  "APPL_INVALID_REQUEST_ID": { "code": 30002, "message": "INVALID_REQUEST_ID", "description": "request id is invalid" },
+  "APPL_INVALID_REQUEST_EMAIL": { "code": 30003, "message": "INVALID_REQUEST_EMAIL", "description": "request email is invalid" },
+  "APPL_INVALID_REQUEST_NAME": { "code": 30004, "message": "INVALID_REQUEST_NAME", "description": "request name is invalid" }
+}

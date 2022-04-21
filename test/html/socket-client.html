@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no" />
+  <!--
+    https://socket.io/docs/v4/client-api/
+    https://socket.io/docs/v4/client-socket-instance/
+  -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+  <script>
+    // curl 'http://appl.host/socket.io/?EIO=4&transport=polling'
+    // var url = 'wss://api.upbit.com/websocket/v1';
+
+    let purews = null;
+    let socketio = null;
+
+    var output = null;
+    var output_each = document.createElement('div');
+    output_each.style.whiteSpace = 'nowrap';
+
+    var txt_addr = null;
+    var btn_connect = null;
+    var txt_packetname = null;
+    var txt_packetdata = null;
+    var btn_send = null;
+    var btn_disconnect = null;
+    var btn_clear = null;
+    var txt_scrollback = null;
+
+    function writeLog(str) {
+      if (output == null) {
+        console.log(str);
+      } else {
+        var dt = new Date().toISOString();
+        var output_line = output_each.cloneNode();
+        output_line.innerHTML = '[' + dt + '] ' + str;
+        output.appendChild(output_line);
+
+        var val_txt_scrollback = Number(txt_scrollback.value);
+        val_txt_scrollback = Math.min(Math.max(1, val_txt_scrollback), 10000);
+        if (output.childNodes.length > val_txt_scrollback) {
+          for (let i = output.childNodes.length - val_txt_scrollback - 1; i >= 0; i--) {
+            output.removeChild(output.childNodes[i]);
+          }
+        }
+
+        var scroll_bottom = output.scrollHeight - output.scrollTop - output.offsetHeight;
+        scroll_bottom = Math.max(0, scroll_bottom);
+
+        var checkpoint = 0;
+        if (output.firstChild != null) {
+          checkpoint = output.firstChild.offsetHeight + Math.floor(output.firstChild.offsetHeight / 2);
+        }
+
+        if (scroll_bottom < checkpoint) {
+          output_line.scrollIntoView();
+        }
+      }
+    }
+
+    function clearLog() {
+      if (output == null) {
+        console.clear();
+      } else {
+        output.innerHTML = '';
+      }
+    }
+
+    function initComponent() {
+      txt_addr = document.getElementById('txt_addr');
+      btn_connect = document.getElementById('btn_connect');
+      txt_packetname = document.getElementById('txt_packetname');
+      txt_packetdata = document.getElementById('txt_packetdata');
+      btn_send = document.getElementById('btn_send');
+      btn_disconnect = document.getElementById('btn_disconnect');
+      btn_clear = document.getElementById('btn_clear');
+      txt_scrollback = document.getElementById('txt_scrollback');
+
+      btn_clear.onclick = function () {
+        clearLog();
+      };
+
+      toggleComponent(false);
+    }
+
+    function toggleComponent(bool) {
+      txt_addr.disabled = bool;
+      btn_connect.disabled = bool;
+      btn_disconnect.disabled = !bool;
+      btn_send.disabled = !bool;
+
+      if (bool == true) {
+        // connected
+        btn_connect.value = 'connected';
+      } else {
+        // disconnected
+        btn_connect.value = 'connect';
+      }
+    }
+
+    function initWS(arg) {
+      let sid = null;
+
+      btn_connect.onclick = function () {
+        if (txt_addr.value == '') {
+          writeLog('requirement: server addr');
+          return;
+        }
+        if (purews != null && purews.readyState < 2) {
+          writeLog('Warning: WebSocket is already in CONNECTING or OPEN state');
+          return;
+        }
+
+        let ts = Date.now();
+
+        function callback_purews() {
+          purews.onopen = function (e) {
+            writeLog('------------------- open');
+            writeLog(e);
+
+            writeLog('purews.protocol: ' + purews.protocol);
+            writeLog('purews.readyState: ' + purews.readyState);
+            //   purews.url = '#'; //purews.url.replace('polling', 'websocket');
+            //   writeLog(purews.url);
+
+            toggleComponent(true);
+          };
+          purews.onmessage = function (e) {
+            // writeLog('------------------- message');
+            // writeLog(e);
+
+            const packet = e.data;
+            let signal = packet.substring(0, e.data.indexOf('{'));
+            let data = null;
+
+            if (signal == '') {
+              signal = packet;
+            }
+
+            if (signal == '0') {
+              let data = packet.substring(packet.indexOf('{'));
+              data = JSON.parse(data);
+              if (data.sid != null) {
+                sid = data.sid;
+                purews.send('40/,{"sid":"' + sid + '"}'); // handshake
+              }
+            } else if (signal == '2') {
+              writeLog('recv : ping');
+              this.send('3'); // pong
+              writeLog('send : pong');
+            } else {
+              writeLog('recv : ' + packet);
+            }
+          };
+          purews.onclose = function (e) {
+            writeLog('------------------- close');
+            writeLog(e);
+            //   writeLog(e.code);
+            if (e.code == 1005) {
+              // init(2);
+            }
+
+            toggleComponent(false);
+          };
+          purews.onerror = function (e) {
+            writeLog('------------------- error');
+            writeLog(e);
+          };
+        }
+
+        let xhr = null;
+        let addr = null;
+
+        // --------------- need CORS
+        // addr = txt_addr.value.replace(/^ws/, 'http').concat('/socket.io/?EIO=4&transport=polling&t=' + ts); // wss > https
+        // xhr = new XMLHttpRequest();
+        // xhr.open('GET', addr, true);
+        // xhr.onreadystatechange = function () {
+        //   if (xhr.readyState == XMLHttpRequest.DONE && 200 <= xhr.status && xhr.status < 400) {
+        //     // console.log(xhr.responseText);
+        //     const json_txt = xhr.responseText.substring(xhr.responseText.indexOf('{'));
+        //     try {
+        //       const json_obj = JSON.parse(json_txt);
+        //       if (json_obj.upgrades[0] == 'websocket') {
+        //         addr = addr.replace(/^http/, 'ws').replace('polling', 'websocket'); // https > wss
+        //         purews = new WebSocket(addr);
+        //         callback_purews();
+        //       }
+        //     } catch (err) {
+        //       throw err;
+        //     }
+        //   }
+        // };
+        // // xhr.withCredentials = true;
+        // xhr.send(null);
+
+        addr = txt_addr.value.replace(/^http/, 'ws').concat('/socket.io/?EIO=4&transport=websocket&t=' + ts); // https > wss
+        purews = new WebSocket(addr);
+        callback_purews();
+      };
+
+      btn_send.onclick = function () {
+        if (purews == null) {
+          writeLog('WebSocket established not yet');
+        } else if (purews.readyState > 1) {
+          writeLog('Warning: WebSocket is already in CLOSING or CLOSED state');
+        } else {
+          let val_txt_packetname = txt_packetname.value;
+          let val_txt_packetdata = txt_packetdata.value;
+          if (val_txt_packetname != '' && val_txt_packetdata != '') {
+            if (/^\d+(?:\.\d+)?$/.test(val_txt_packetdata) == false) {
+              try {
+                JSON.parse(val_txt_packetdata);
+              } catch (err) {
+                val_txt_packetdata = val_txt_packetdata.replace(/\\/g, '\\\\');
+                val_txt_packetdata = '"'.concat(val_txt_packetdata).concat('"');
+              }
+            }
+            let senddata = '42/,["' + val_txt_packetname + '",' + val_txt_packetdata + ']';
+            purews.send(senddata);
+            writeLog('send : ' + senddata);
+          } else {
+            writeLog('requirement: packet data');
+          }
+        }
+      };
+
+      btn_disconnect.onclick = function () {
+        if (purews == null) {
+          writeLog('WebSocket established not yet');
+        } else if (purews.readyState == 1) {
+          // https://developer.mozilla.org/ko/docs/Web/API/WebSocket/readyState
+          purews.close();
+        } else {
+          writeLog('Warning: WebSocket is already in CLOSING or CLOSED state');
+        }
+        // writeLog(purews);
+      };
+    }
+
+    function initIO() {
+      btn_connect.onclick = function () {
+        if (txt_addr.value == '') {
+          writeLog('requirement: server addr');
+          return;
+        }
+
+        // https://socket.io/docs/v4/client-options/#transports
+        socketio = io(txt_addr.value, {
+          transports: ['websocket', 'polling'], // <<< 1. use WebSocket first, if available
+          // withCredentials: true,
+        });
+        writeLog(socketio);
+
+        socketio.on('connect_error', () => {
+          writeLog('------------------- connect_error');
+          toggleComponent(false);
+          // socketio.io.opts.transports = ['polling', 'websocket']; // <<< 2. revert to classic upgrade
+        });
+        socketio.on('connect', (data) => {
+          writeLog('------------------- connect');
+          toggleComponent(true);
+
+          for (let i = 0, i_len = txt_packetname.options.length; i < i_len; i++) {
+            let k = txt_packetname.options[i].value;
+            socketio.on(k, (message) => {
+              if (typeof message == 'object') {
+                writeLog('recv : ' + JSON.stringify(message));
+              } else {
+                writeLog('recv : ' + message);
+              }
+            });
+          }
+
+          socketio.on('error', (err) => {
+            writeLog('------------------- error : ' + JSON.stringify(err));
+          });
+          socketio.on('disconnect', () => {
+            writeLog('------------------- disconnect');
+            toggleComponent(false);
+          });
+          socketio.on('close', (reason) => {
+            writeLog('------------------- close : ' + reason);
+            toggleComponent(false);
+          });
+          socketio.on('reconnect', () => {
+            writeLog('------------------- reconnect');
+          });
+        });
+      };
+
+      btn_send.onclick = function () {
+        if (socketio == null) {
+          writeLog('socket established not yet');
+        } else {
+          let val_txt_packetname = txt_packetname.value;
+          let val_txt_packetdata = txt_packetdata.value;
+          if (val_txt_packetname != '' && val_txt_packetdata != '') {
+            if (/^(?:\{|\[)/.test(val_txt_packetdata) == true) {
+              try {
+                val_txt_packetdata = JSON.parse(val_txt_packetdata);
+              } catch (err) {
+                // val_txt_packetdata = val_txt_packetdata.replace(/\\/g, '\\\\');
+                // val_txt_packetdata = '"'.concat(val_txt_packetdata).concat('"');
+              }
+            }
+            socketio.emit(val_txt_packetname, val_txt_packetdata);
+            writeLog('send : [' + val_txt_packetname + '] ' + JSON.stringify(val_txt_packetdata));
+          } else {
+            writeLog('requirement: packet data');
+          }
+        }
+      };
+
+      btn_disconnect.onclick = function () {
+        if (socketio == null) {
+          writeLog('socket established not yet');
+        } else {
+          socketio.disconnect();
+          writeLog('socket.disconnect()');
+        }
+      };
+    }
+
+    function loadConnector(which) {
+      if (socketio != null) {
+        socketio.close();
+      }
+      if (purews != null) {
+        purews.close();
+      }
+      switch (which) {
+        case 1:
+          initIO();
+          writeLog('initialized using by socket.io-client');
+          break;
+        case 2:
+          initWS();
+          writeLog('initialized using by pure WebSocket');
+          break;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function (e) {
+      output = document.getElementById('output');
+      initComponent();
+
+      var socket_io = document.getElementById('socket_io');
+      var socket_ws = document.getElementById('socket_ws');
+
+      socket_io.onclick = function () {
+        writeLog('');
+        writeLog('');
+        writeLog('');
+        loadConnector(1);
+      };
+      socket_ws.onclick = function () {
+        writeLog('');
+        writeLog('');
+        writeLog('');
+        loadConnector(2);
+      };
+
+      socket_io.checked = true;
+      loadConnector(1);
+    });
+  </script>
+
+  <style>
+    * {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 11pt;
+    }
+    .output {
+      width: 80%;
+      height: 20em;
+      overflow: auto;
+      margin: 0.2em auto;
+      padding: 0.2em;
+      border-radius: 0.25em;
+      background-color: #dedede;
+    }
+    .frm {
+      width: 80%;
+      margin: 0 auto;
+    }
+    .frm li {
+      margin: 0.2em 0;
+    }
+  </style>
+
+  <!-- <h1><i>Verify Console</i></h1> -->
+  <div id="output" class="output"></div>
+  <ul class="frm" style="list-style-type: none">
+    <li>
+      use library
+      <label><input type="radio" id="socket_io" name="socket" /> socket.io-client</label>
+      <label><input type="radio" id="socket_ws" name="socket" /> Pure WebSocket</label>
+    </li>
+    <li>
+      <label>server addr <input id="txt_addr" type="text" size="40" placeholder="(ws|http)://host[:port]" /></label>
+      <input id="btn_connect" type="button" value="connect" />
+      <input id="btn_disconnect" type="button" value="disconnect" />
+      <input id="btn_clear" type="button" value="clear" />
+    </li>
+    <li>
+      <label>
+        packet name
+        <!-- <input id="txt_packetname" type="text" /> -->
+        <select id="txt_packetname">
+          <option value="hello">hello</option>
+          <option value="reflect">reflect</option>
+          <option value="fixed">fixed</option>
+          <option value="ip">ip</option>
+          <option value="sid">sid</option>
+          <option value="throw">throw</option>
+          <option value="loop">loop</option>
+          <option value="login">login</option>
+          <option value="notify">notify</option>
+        </select>
+      </label>
+    </li>
+    <li>
+      <label>packet data <input id="txt_packetdata" type="text" size="50" placeholder='(Abc|123|[1, 2]|{"foo": 1, "bar": "2"})' /></label> <input id="btn_send" type="button" value="send" />
+    </li>
+    <li>scroll line <input type="number" id="txt_scrollback" value="100" /></li>
+  </ul>
+</html>

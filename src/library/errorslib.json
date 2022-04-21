@@ -1,0 +1,20 @@
+{
+  "//     0 ~   999": "------------------------------------------- Common Error",
+  "SYS_OK": { "code": 0, "message": "OK", "description": "normal status" },
+  "SYS_UNDEFINED": { "code": 900, "message": "UNDEFINED_PROBLEM", "description": "undefined problem occurred" },
+  "SYS_CONFLICT": { "code": 910, "message": "CONFLICT_EACH_OTHER", "description": "conflict between A and B" },
+  "SYS_TIMEOUT": { "code": 920, "message": "REQUEST_TIMEOUT", "description": "request timeout" },
+  "SYS_TIMEOUT_CURL": { "code": 921, "message": "REQUEST_TIMEOUT_CURL", "description": "curl request timeout" },
+
+  "//  1000 ~  4999": "------------------------------------------- DB Error",
+  "DB_CONNECTION": { "code": 1000, "message": "CONNECTION_ERROR", "description": "DB connection isn't normal" },
+  "DB_QUERY": { "code": 1010, "message": "QUERY_ERROR", "description": "wrong DB query detected" },
+  "DB_READ": { "code": 1020, "message": "READ_ERROR", "description": "problem occurred when DB reading" },
+  "DB_WRITE": { "code": 1030, "message": "WRITE_ERROR", "description": "problem occurred when DB writing" },
+
+  "//  5000 ~  9999": "------------------------------------------- Cache Error",
+  "CACHE_CONNECTION": { "code": 5000, "message": "CONNECTION_ERROR", "description": "Cache connection isn't normal" },
+  "CACHE_QUERY": { "code": 5010, "message": "QUERY_ERROR", "description": "wrong Cache query detected" },
+  "CACHE_READ": { "code": 5020, "message": "READ_ERROR", "description": "problem occurred when Cache reading" },
+  "CACHE_WRITE": { "code": 5030, "message": "WRITE_ERROR", "description": "problem occurred when Cache writing" }
+}

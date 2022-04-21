@@ -1,0 +1,19 @@
+// configurations for vscode intellisense
+// https://www.typescriptlang.org/tsconfig
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "es6",
+    "baseUrl": ".",
+    "paths": {
+      // "@root/*": ["./*"],
+      "@src/*": ["./src/*"]
+    },
+    "checkJs": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules", "log"],
+  "include": ["src/**/*"]
+}

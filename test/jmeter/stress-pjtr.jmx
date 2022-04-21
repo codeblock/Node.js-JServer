@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">10000</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">100</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+          <collectionProp name="CookieManager.cookies">
+            <elementProp name="connect.sid" elementType="Cookie" testname="connect.sid">
+              <stringProp name="Cookie.value">s%3ACWHrC-n6Aj-JWPAyNtrglhGi9XvcMWNv.YZhS%2Bgolt%2BQlwQ2Alnn6IJrzMmp0Zrg5JrBdHnvbsj0</stringProp>
+              <stringProp name="Cookie.domain">appl.host</stringProp>
+              <stringProp name="Cookie.path">/</stringProp>
+              <boolProp name="Cookie.secure">false</boolProp>
+              <longProp name="Cookie.expires">0</longProp>
+              <boolProp name="Cookie.path_specified">true</boolProp>
+              <boolProp name="Cookie.domain_specified">true</boolProp>
+            </elementProp>
+          </collectionProp>
+          <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+          <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+        </CookieManager>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables (normal user)" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="server_host_api" elementType="Argument">
+              <stringProp name="Argument.name">server_host_api</stringProp>
+              <stringProp name="Argument.value">localhost</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">string, domain or ip</stringProp>
+            </elementProp>
+            <elementProp name="server_port_api" elementType="Argument">
+              <stringProp name="Argument.name">server_port_api</stringProp>
+              <stringProp name="Argument.value">9100</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">number</stringProp>
+            </elementProp>
+            <elementProp name="server_host_game" elementType="Argument">
+              <stringProp name="Argument.name">server_host_game</stringProp>
+              <stringProp name="Argument.value">appl.host</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">(not applies) string, domain or ip</stringProp>
+            </elementProp>
+            <elementProp name="server_port_game" elementType="Argument">
+              <stringProp name="Argument.name">server_port_game</stringProp>
+              <stringProp name="Argument.value">9200</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">(not applies) number</stringProp>
+            </elementProp>
+            <elementProp name="ws_timeout_connection" elementType="Argument">
+              <stringProp name="Argument.name">ws_timeout_connection</stringProp>
+              <stringProp name="Argument.value">5000</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <stringProp name="Argument.desc">milliseconds</stringProp>
+            </elementProp>
+            <elementProp name="ws_timeout_response" elementType="Argument">
+              <stringProp name="Argument.name">ws_timeout_response</stringProp>
+              <stringProp name="Argument.value">5000</stringProp>
+              <stringProp name="Argument.desc">milliseconds</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="os" elementType="Argument">
+              <stringProp name="Argument.name">os</stringProp>
+              <stringProp name="Argument.value">2</stringProp>
+              <stringProp name="Argument.desc">number (0: All, 1: iOS, 2: Android, 3: WebGL)</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="v" elementType="Argument">
+              <stringProp name="Argument.name">v</stringProp>
+              <stringProp name="Argument.value">0.0.1</stringProp>
+              <stringProp name="Argument.desc">string (Application.version)</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="uuid" elementType="Argument">
+              <stringProp name="Argument.name">uuid</stringProp>
+              <stringProp name="Argument.value">tonic</stringProp>
+              <stringProp name="Argument.desc">wallet address ex) ${__UUID} or ${__machineName} or ...</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="isNewAccount" elementType="Argument">
+              <stringProp name="Argument.name">isNewAccount</stringProp>
+              <stringProp name="Argument.value">true</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="language" elementType="Argument">
+              <stringProp name="Argument.name">language</stringProp>
+              <stringProp name="Argument.value">kr</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="test_uuid" elementType="Argument">
+              <stringProp name="Argument.name">test_uuid</stringProp>
+              <stringProp name="Argument.value">${__UUID}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="sid" elementType="Argument">
+              <stringProp name="Argument.name">sid</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.desc">socket ID</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="id_user" elementType="Argument">
+              <stringProp name="Argument.name">id_user</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.desc">user ID</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="id_club" elementType="Argument">
+              <stringProp name="Argument.name">id_club</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.desc">club ID</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="some_number" elementType="Argument">
+              <stringProp name="Argument.name">some_number</stringProp>
+              <stringProp name="Argument.value">0</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable (new user mode: uuid overwrite)" enabled="false">
+          <stringProp name="TestPlan.comments">12345678-1234-4444-a123-000000000000</stringProp>
+          <stringProp name="maximumValue">999999999999</stringProp>
+          <stringProp name="minimumValue">111111111111</stringProp>
+          <stringProp name="outputFormat">${__machineName}-000000000000</stringProp>
+          <boolProp name="perThread">true</boolProp>
+          <stringProp name="randomSeed"></stringProp>
+          <stringProp name="variableName">uuid</stringProp>
+        </RandomVariableConfig>
+        <hashTree/>
+        <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter (old user mode: uuid overwrite)" enabled="false">
+          <stringProp name="CounterConfig.start">0</stringProp>
+          <stringProp name="CounterConfig.end">999</stringProp>
+          <stringProp name="CounterConfig.incr">1</stringProp>
+          <stringProp name="CounterConfig.name">uuid</stringProp>
+          <stringProp name="CounterConfig.format">${__machineName}-000000000000</stringProp>
+          <boolProp name="CounterConfig.per_user">false</boolProp>
+        </CounterConfig>
+        <hashTree/>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="false">
+          <stringProp name="ConstantTimer.delay">500</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request - /a" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="os" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${os}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">os</stringProp>
+              </elementProp>
+              <elementProp name="v" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${v}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">v</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server_host_api}</stringProp>
+          <stringProp name="HTTPSampler.port">${server_port_api}</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/a</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request - /common/ip" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="os" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${os}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">os</stringProp>
+              </elementProp>
+              <elementProp name="v" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${v}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">v</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server_host_api}</stringProp>
+          <stringProp name="HTTPSampler.port">${server_port_api}</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/common/ip</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">data</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+            <stringProp name="Scope.variable">jm</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request - /common/err" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="os" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${os}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">os</stringProp>
+              </elementProp>
+              <elementProp name="v" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${v}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">v</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server_host_api}</stringProp>
+          <stringProp name="HTTPSampler.port">${server_port_api}</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/common/err</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request - /user/test" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="os" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${os}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">os</stringProp>
+              </elementProp>
+              <elementProp name="v" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${v}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">v</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server_host_api}</stringProp>
+          <stringProp name="HTTPSampler.port">${server_port_api}</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/user/test</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="UDV ------------------------- Socket" enabled="false">
+          <collectionProp name="Arguments.arguments"/>
+          <stringProp name="TestPlan.comments">dummy element</stringProp>
+        </Arguments>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.OpenWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.OpenWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.OpenWebSocketSampler" testname="WS Open Connection - polling" enabled="false">
+          <boolProp name="TLS">false</boolProp>
+          <stringProp name="server">${server_host_game}</stringProp>
+          <stringProp name="port">${server_port_game}</stringProp>
+          <stringProp name="path">/socket.io/?EIO=4&amp;transport=polling&amp;t=${test_uuid}</stringProp>
+          <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+          <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+        </eu.luminis.jmeter.wssampler.OpenWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.OpenWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.OpenWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.OpenWebSocketSampler" testname="WS Open Connection - websocket" enabled="false">
+          <boolProp name="TLS">false</boolProp>
+          <stringProp name="server">${server_host_game}</stringProp>
+          <stringProp name="port">${server_port_game}</stringProp>
+          <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket&amp;t=${test_uuid}</stringProp>
+          <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+          <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+        </eu.luminis.jmeter.wssampler.OpenWebSocketSampler>
+        <hashTree/>
+        <eu.luminis.jmeter.wssampler.SingleReadWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.SingleReadWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.SingleReadWebSocketSampler" testname="WS srs" enabled="false">
+          <boolProp name="TLS">false</boolProp>
+          <stringProp name="server"></stringProp>
+          <stringProp name="port">80</stringProp>
+          <stringProp name="path"></stringProp>
+          <stringProp name="connectTimeout">20000</stringProp>
+          <stringProp name="dataType">Text</stringProp>
+          <boolProp name="createNewConnection">false</boolProp>
+          <stringProp name="readTimeout">6000</stringProp>
+          <boolProp name="optional">false</boolProp>
+        </eu.luminis.jmeter.wssampler.SingleReadWebSocketSampler>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">sid</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;sid&quot;:&quot;([^&quot;]+)&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+            <boolProp name="RegexExtractor.default_empty_value">true</boolProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS req-res - handshake" enabled="false">
+          <boolProp name="createNewConnection">false</boolProp>
+          <boolProp name="TLS">false</boolProp>
+          <stringProp name="server">${server_host_game}</stringProp>
+          <stringProp name="port">${server_port_game}</stringProp>
+          <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket&amp;params={&quot;id&quot;:&quot;${sessid}&quot;,&quot;os&quot;:${os},&quot;v&quot;:&quot;${v}&quot;}</stringProp>
+          <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+          <boolProp name="binaryPayload">false</boolProp>
+          <stringProp name="requestData">40/,{&quot;sid&quot;:&quot;${sid}&quot;}</stringProp>
+          <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+          <stringProp name="TestPlan.comments">request params are for debug</stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree>
+          <eu.luminis.jmeter.wssampler.TextFrameFilter guiclass="eu.luminis.jmeter.wssampler.TextFrameFilterGui" testclass="eu.luminis.jmeter.wssampler.TextFrameFilter" testname="WS tff - handshake" enabled="true">
+            <stringProp name="comparisonType">NotContainsRegex</stringProp>
+            <stringProp name="matchValue">^40.*</stringProp>
+          </eu.luminis.jmeter.wssampler.TextFrameFilter>
+          <hashTree/>
+        </hashTree>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="false">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">10000</stringProp>
+        </LoopController>
+        <hashTree>
+          <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS req-res - hello" enabled="false">
+            <boolProp name="createNewConnection">false</boolProp>
+            <boolProp name="TLS">false</boolProp>
+            <stringProp name="server">${server_host_game}</stringProp>
+            <stringProp name="port">${server_port_game}</stringProp>
+            <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket&amp;params={&quot;id&quot;:&quot;${sessid}&quot;,&quot;os&quot;:${os},&quot;v&quot;:&quot;${v}&quot;}</stringProp>
+            <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+            <boolProp name="binaryPayload">false</boolProp>
+            <stringProp name="requestData">42/,[&quot;hello&quot;, {&quot;loop-count-per-thread&quot;:&quot;${__groovy(ctx.getTestLogicalAction())}&quot;,&quot;current-loop-count-per-thread&quot;:${__counter(true)},&quot;vars.getIteration&quot;:${__groovy(vars.getIteration())}}]</stringProp>
+            <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+            <boolProp name="loadDataFromFile">false</boolProp>
+            <stringProp name="dataFile"></stringProp>
+            <stringProp name="TestPlan.comments">request params are for debug</stringProp>
+          </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+          <hashTree>
+            <eu.luminis.jmeter.wssampler.TextFrameFilter guiclass="eu.luminis.jmeter.wssampler.TextFrameFilterGui" testclass="eu.luminis.jmeter.wssampler.TextFrameFilter" testname="WS tff - hello" enabled="true">
+              <stringProp name="comparisonType">NotContainsRegex</stringProp>
+              <stringProp name="matchValue">^42\[&quot;(?:Error|hello)&quot;,</stringProp>
+            </eu.luminis.jmeter.wssampler.TextFrameFilter>
+            <hashTree/>
+          </hashTree>
+          <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS req-res - reflect" enabled="false">
+            <boolProp name="createNewConnection">false</boolProp>
+            <boolProp name="TLS">false</boolProp>
+            <stringProp name="server">${server_host_game}</stringProp>
+            <stringProp name="port">${server_port_game}</stringProp>
+            <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket&amp;params={&quot;id&quot;:&quot;${sessid}&quot;,&quot;os&quot;:${os},&quot;v&quot;:&quot;${v}&quot;}</stringProp>
+            <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+            <boolProp name="binaryPayload">false</boolProp>
+            <stringProp name="requestData">42/,[&quot;reflect&quot;, {&quot;foo&quot;:${foo},&quot;bar&quot;:${bar}}]</stringProp>
+            <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+            <boolProp name="loadDataFromFile">false</boolProp>
+            <stringProp name="dataFile"></stringProp>
+            <stringProp name="TestPlan.comments">request params are for debug</stringProp>
+          </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+          <hashTree>
+            <eu.luminis.jmeter.wssampler.TextFrameFilter guiclass="eu.luminis.jmeter.wssampler.TextFrameFilterGui" testclass="eu.luminis.jmeter.wssampler.TextFrameFilter" testname="WS tff - reflect" enabled="true">
+              <stringProp name="comparisonType">NotContainsRegex</stringProp>
+              <stringProp name="matchValue">^42\[&quot;(?:Error|reflect)&quot;,</stringProp>
+            </eu.luminis.jmeter.wssampler.TextFrameFilter>
+            <hashTree/>
+          </hashTree>
+          <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS req-res - fixed" enabled="false">
+            <boolProp name="createNewConnection">false</boolProp>
+            <boolProp name="TLS">false</boolProp>
+            <stringProp name="server">${server_host_game}</stringProp>
+            <stringProp name="port">${server_port_game}</stringProp>
+            <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket&amp;params={&quot;id&quot;:&quot;${sessid}&quot;,&quot;os&quot;:${os},&quot;v&quot;:&quot;${v}&quot;}</stringProp>
+            <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+            <boolProp name="binaryPayload">false</boolProp>
+            <stringProp name="requestData">42/,[&quot;fixed&quot;, {&quot;foo&quot;:${foo},&quot;bar&quot;:${bar}}]</stringProp>
+            <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+            <boolProp name="loadDataFromFile">false</boolProp>
+            <stringProp name="dataFile"></stringProp>
+            <stringProp name="TestPlan.comments">request params are for debug</stringProp>
+          </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+          <hashTree>
+            <eu.luminis.jmeter.wssampler.TextFrameFilter guiclass="eu.luminis.jmeter.wssampler.TextFrameFilterGui" testclass="eu.luminis.jmeter.wssampler.TextFrameFilter" testname="WS tff - fixed" enabled="true">
+              <stringProp name="comparisonType">NotContainsRegex</stringProp>
+              <stringProp name="matchValue">^42\[&quot;(?:Error|fixed)&quot;,</stringProp>
+            </eu.luminis.jmeter.wssampler.TextFrameFilter>
+            <hashTree/>
+          </hashTree>
+          <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS req-res - ip" enabled="false">
+            <boolProp name="createNewConnection">false</boolProp>
+            <boolProp name="TLS">false</boolProp>
+            <stringProp name="server">${server_host_game}</stringProp>
+            <stringProp name="port">${server_port_game}</stringProp>
+            <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket&amp;params={&quot;id&quot;:&quot;${sessid}&quot;,&quot;os&quot;:${os},&quot;v&quot;:&quot;${v}&quot;}</stringProp>
+            <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+            <boolProp name="binaryPayload">false</boolProp>
+            <stringProp name="requestData">42/,[&quot;ip&quot;, {&quot;foo&quot;:${foo},&quot;bar&quot;:${bar}}]</stringProp>
+            <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+            <boolProp name="loadDataFromFile">false</boolProp>
+            <stringProp name="dataFile"></stringProp>
+            <stringProp name="TestPlan.comments">request params are for debug</stringProp>
+          </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+          <hashTree>
+            <eu.luminis.jmeter.wssampler.TextFrameFilter guiclass="eu.luminis.jmeter.wssampler.TextFrameFilterGui" testclass="eu.luminis.jmeter.wssampler.TextFrameFilter" testname="WS tff - ip" enabled="true">
+              <stringProp name="comparisonType">NotContainsRegex</stringProp>
+              <stringProp name="matchValue">^42\[&quot;(?:Error|ip)&quot;,</stringProp>
+            </eu.luminis.jmeter.wssampler.TextFrameFilter>
+            <hashTree/>
+          </hashTree>
+          <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS req-res - sid" enabled="false">
+            <boolProp name="createNewConnection">false</boolProp>
+            <boolProp name="TLS">false</boolProp>
+            <stringProp name="server">${server_host_game}</stringProp>
+            <stringProp name="port">${server_port_game}</stringProp>
+            <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket&amp;params={&quot;id&quot;:&quot;${sessid}&quot;,&quot;os&quot;:${os},&quot;v&quot;:&quot;${v}&quot;}</stringProp>
+            <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+            <boolProp name="binaryPayload">false</boolProp>
+            <stringProp name="requestData">42/,[&quot;sid&quot;, {&quot;foo&quot;:${foo},&quot;bar&quot;:${bar}}]</stringProp>
+            <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+            <boolProp name="loadDataFromFile">false</boolProp>
+            <stringProp name="dataFile"></stringProp>
+            <stringProp name="TestPlan.comments">request params are for debug</stringProp>
+          </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+          <hashTree>
+            <eu.luminis.jmeter.wssampler.TextFrameFilter guiclass="eu.luminis.jmeter.wssampler.TextFrameFilterGui" testclass="eu.luminis.jmeter.wssampler.TextFrameFilter" testname="WS tff - sid" enabled="true">
+              <stringProp name="comparisonType">NotContainsRegex</stringProp>
+              <stringProp name="matchValue">^42\[&quot;(?:Error|sid)&quot;,</stringProp>
+            </eu.luminis.jmeter.wssampler.TextFrameFilter>
+            <hashTree/>
+          </hashTree>
+          <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS req-res - throw" enabled="false">
+            <boolProp name="createNewConnection">false</boolProp>
+            <boolProp name="TLS">false</boolProp>
+            <stringProp name="server">${server_host_game}</stringProp>
+            <stringProp name="port">${server_port_game}</stringProp>
+            <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket&amp;params={&quot;id&quot;:&quot;${sessid}&quot;,&quot;os&quot;:${os},&quot;v&quot;:&quot;${v}&quot;}</stringProp>
+            <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+            <boolProp name="binaryPayload">false</boolProp>
+            <stringProp name="requestData">42/,[&quot;throw&quot;, {}]</stringProp>
+            <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+            <boolProp name="loadDataFromFile">false</boolProp>
+            <stringProp name="dataFile"></stringProp>
+            <stringProp name="TestPlan.comments">request params are for debug</stringProp>
+          </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+          <hashTree>
+            <eu.luminis.jmeter.wssampler.TextFrameFilter guiclass="eu.luminis.jmeter.wssampler.TextFrameFilterGui" testclass="eu.luminis.jmeter.wssampler.TextFrameFilter" testname="WS tff - throw" enabled="false">
+              <stringProp name="comparisonType">NotContainsRegex</stringProp>
+              <stringProp name="matchValue">^42\[&quot;(?:Error|throw)&quot;,</stringProp>
+            </eu.luminis.jmeter.wssampler.TextFrameFilter>
+            <hashTree/>
+          </hashTree>
+          <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS req-res - loop" enabled="false">
+            <boolProp name="createNewConnection">false</boolProp>
+            <boolProp name="TLS">false</boolProp>
+            <stringProp name="server">${server_host_game}</stringProp>
+            <stringProp name="port">${server_port_game}</stringProp>
+            <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket&amp;params={&quot;id&quot;:&quot;${sessid}&quot;,&quot;os&quot;:${os},&quot;v&quot;:&quot;${v}&quot;}</stringProp>
+            <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+            <boolProp name="binaryPayload">false</boolProp>
+            <stringProp name="requestData">42/,[&quot;loop&quot;, {}]</stringProp>
+            <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+            <boolProp name="loadDataFromFile">false</boolProp>
+            <stringProp name="dataFile"></stringProp>
+            <stringProp name="TestPlan.comments">request params are for debug</stringProp>
+          </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+          <hashTree>
+            <eu.luminis.jmeter.wssampler.TextFrameFilter guiclass="eu.luminis.jmeter.wssampler.TextFrameFilterGui" testclass="eu.luminis.jmeter.wssampler.TextFrameFilter" testname="WS tff - loop" enabled="true">
+              <stringProp name="comparisonType">NotContainsRegex</stringProp>
+              <stringProp name="matchValue">^42\[&quot;(?:Error|loop)&quot;,</stringProp>
+            </eu.luminis.jmeter.wssampler.TextFrameFilter>
+            <hashTree/>
+          </hashTree>
+          <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS req-res - userTest" enabled="false">
+            <boolProp name="createNewConnection">false</boolProp>
+            <boolProp name="TLS">false</boolProp>
+            <stringProp name="server">${server_host_game}</stringProp>
+            <stringProp name="port">${server_port_game}</stringProp>
+            <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket&amp;params={&quot;id&quot;:&quot;${sessid}&quot;,&quot;os&quot;:${os},&quot;v&quot;:&quot;${v}&quot;}</stringProp>
+            <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+            <boolProp name="binaryPayload">false</boolProp>
+            <stringProp name="requestData">42/,[&quot;userTest&quot;, {}]</stringProp>
+            <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+            <boolProp name="loadDataFromFile">false</boolProp>
+            <stringProp name="dataFile"></stringProp>
+            <stringProp name="TestPlan.comments">request params are for debug</stringProp>
+          </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+          <hashTree>
+            <eu.luminis.jmeter.wssampler.TextFrameFilter guiclass="eu.luminis.jmeter.wssampler.TextFrameFilterGui" testclass="eu.luminis.jmeter.wssampler.TextFrameFilter" testname="WS tff - userTest" enabled="true">
+              <stringProp name="comparisonType">NotContainsRegex</stringProp>
+              <stringProp name="matchValue">^42\[&quot;(?:Error|userTest)&quot;,</stringProp>
+            </eu.luminis.jmeter.wssampler.TextFrameFilter>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <eu.luminis.jmeter.wssampler.CloseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.CloseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.CloseWebSocketSampler" testname="WebSocket Close" enabled="false">
+          <stringProp name="statusCode">1000</stringProp>
+          <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+        </eu.luminis.jmeter.wssampler.CloseWebSocketSampler>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="UDV ------------------------- Socket" enabled="false">
+          <collectionProp name="Arguments.arguments"/>
+          <stringProp name="TestPlan.comments">dummy element</stringProp>
+        </Arguments>
+        <hashTree/>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller - isNewAccount" enabled="false">
+          <stringProp name="TestPlan.comments">isNewAccount</stringProp>
+          <stringProp name="IfController.condition">${isNewAccount}</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+          <boolProp name="IfController.useExpression">true</boolProp>
+        </IfController>
+        <hashTree>
+          <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS req-res - CreateAccount" enabled="true">
+            <boolProp name="createNewConnection">false</boolProp>
+            <boolProp name="TLS">false</boolProp>
+            <stringProp name="server">${server_host_game}</stringProp>
+            <stringProp name="port">${server_port_game}</stringProp>
+            <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket&amp;params={&quot;id&quot;:&quot;${sessid}&quot;,&quot;os&quot;:${os},&quot;v&quot;:&quot;${v}&quot;}</stringProp>
+            <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+            <boolProp name="binaryPayload">false</boolProp>
+            <stringProp name="requestData">42/,[&quot;CreateAccount&quot;, {&quot;nickname&quot;: &quot;${uuid}&quot;, &quot;otherValue&quot;: ${someValue}}]</stringProp>
+            <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+            <boolProp name="loadDataFromFile">false</boolProp>
+            <stringProp name="dataFile"></stringProp>
+          </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+          <hashTree>
+            <eu.luminis.jmeter.wssampler.TextFrameFilter guiclass="eu.luminis.jmeter.wssampler.TextFrameFilterGui" testclass="eu.luminis.jmeter.wssampler.TextFrameFilter" testname="WS tff - CreateAccount" enabled="true">
+              <stringProp name="comparisonType">NotContainsRegex</stringProp>
+              <stringProp name="matchValue">^42\[&quot;(?:Error|CreateAccount)&quot;,</stringProp>
+            </eu.luminis.jmeter.wssampler.TextFrameFilter>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">id_user</stringProp>
+              <stringProp name="RegexExtractor.regex">&quot;id_user&quot;:(\w+)</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">0</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS req-res - Auth" enabled="false">
+          <boolProp name="createNewConnection">false</boolProp>
+          <boolProp name="TLS">false</boolProp>
+          <stringProp name="server">${server_host_game}</stringProp>
+          <stringProp name="port">${server_port_game}</stringProp>
+          <stringProp name="path">/socket.io/?EIO=4&amp;transport=websocket&amp;params={&quot;id&quot;:&quot;${sessid}&quot;,&quot;os&quot;:${os},&quot;v&quot;:&quot;${v}&quot;}</stringProp>
+          <stringProp name="connectTimeout">${ws_timeout_connection}</stringProp>
+          <boolProp name="binaryPayload">false</boolProp>
+          <stringProp name="requestData">42/,[&quot;Auth&quot;, {&quot;uuid&quot;:${uuid},&quot;otherValue&quot;:${someValue}}]</stringProp>
+          <stringProp name="readTimeout">${ws_timeout_response}</stringProp>
+          <boolProp name="loadDataFromFile">false</boolProp>
+          <stringProp name="dataFile"></stringProp>
+          <stringProp name="TestPlan.comments">request params are for debug</stringProp>
+        </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
+        <hashTree>
+          <eu.luminis.jmeter.wssampler.TextFrameFilter guiclass="eu.luminis.jmeter.wssampler.TextFrameFilterGui" testclass="eu.luminis.jmeter.wssampler.TextFrameFilter" testname="WS tff - Auth" enabled="true">
+            <stringProp name="comparisonType">NotContainsRegex</stringProp>
+            <stringProp name="matchValue">^42\[&quot;(?:Error|Auth)&quot;,</stringProp>
+          </eu.luminis.jmeter.wssampler.TextFrameFilter>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">some_number</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;some_number&quot;:([0-9]+)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">0</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+            <stringProp name="Scope.variable"></stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">id_club</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;id_club&quot;:(\w+)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">0</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+            <stringProp name="Scope.variable"></stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+          <collectionProp name="Asserion.test_strings">
+            <stringProp name="67232232">Error</stringProp>
+          </collectionProp>
+          <stringProp name="Assertion.custom_message"></stringProp>
+          <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+          <boolProp name="Assertion.assume_success">false</boolProp>
+          <intProp name="Assertion.test_type">20</intProp>
+        </ResponseAssertion>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">true</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+          <boolProp name="ResultCollector.error_logging">true</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

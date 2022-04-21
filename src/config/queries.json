@@ -1,0 +1,40 @@
+{
+  "standard": {
+    "timeSyncData": "SELECT FLOOR(UNIX_TIMESTAMP(NOW(3)) * 1000) tsmilli, TIMESTAMPDIFF(SECOND, UTC_TIMESTAMP(), NOW()) offset FROM DUAL"
+  },
+  "user": {
+    "selectTbTestAllRowCountWillBeFixedAutomatically": "SELECT id FROM tb_test WHERE 1 = 2",
+    "// selectTbTestAllRowCount": "SELECT COUNT(1) FROM tb_test",
+    "selectTbTestRow": "SELECT * FROM tb_test WHERE ?? = ?",
+    "insertTbTest": "INSERT INTO tb_test (id, f1, f2, f3, f4) VALUES (:id, :f1, :f2, :f3, :f4)",
+    "updateTbTest": "UPDATE tb_test SET f2 = ?, f3 = ?, f4 = ? WHERE id = ?",
+    "upsertTbTest": "INSERT INTO tb_test (id, f1, f2, f3, f4) VALUES (:id, :f1, :f2, :f3, :f4) ON DUPLICATE KEY UPDATE f2 = f2 + :ff2, f3 = f3 + :ff3",
+    "deleteTbTest": "DELETE FROM tb_test WHERE id = ?",
+
+    "selectTbTestSubRows": "SELECT * FROM tb_test_sub WHERE id_test = ?",
+    "insertTbTestSub": "INSERT INTO tb_test_sub (id_test, id, f1, f2, f3, f4) VALUES (:id_test, :id, :f1, :f2, :f3, :f4)",
+    "updateTbTestSub": "UPDATE tb_test_sub SET f2 =f2+  ?, f3=      f3+  ?, f4  =    ?   WHERE id_test = ? AND id IN (?)",
+    "upsertTbTestSub": "INSERT INTO tb_test_sub (id_test, id, f1, f2, f3, f4) VALUES (:id_test, :id, :f1, :f2, :f3, :f4) ON DUPLICATE KEY UPDATE f2 = f2 + :ff2, f3 = f3 + :ff3",
+    "deleteTbTestSub": "DELETE FROM tb_test_sub WHERE id_test = :id_test AND id = :id",
+
+    "selectTbUserRow": "SELECT * FROM tb_user WHERE ?? = ?",
+    "insertTbUserBindArr": "INSERT INTO tb_user (`id`, name, time_created, time_login, time_logout, status_perm, status_join, club, exp, gold, gem_paid, gem_free, country, token, lang, os, v, bv) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "insertTbUserBindObj": "INSERT INTO tb_user (id, `name`, time_created, time_login, time_logout, status_perm, status_join, club, exp, gold, gem_paid, gem_free, country, token, lang, os, v, bv) VALUES (:id, :name, :time_created, :time_login, :time_logout, :status_perm, :status_join, :club, :exp, :gold, :gem_paid, :gem_free, :country, :token, :lang, :os, :v, :bv)",
+    "upsertTbUserBindObj": "INSERT INTO tb_user (`id`, name, time_created, time_login, time_logout, status_perm, status_join, club, exp, gold, gem_paid, gem_free, country, token, lang, os, v, bv) VALUES (:id, :name, :time_created, :time_login, :time_logout, :status_perm, :status_join, :club, :exp, :gold, :gem_paid, :gem_free, :country, :token, :lang, :os, :v, :bv) ON DUPLICATE KEY UPDATE exp = exp + :addexp",
+    "updateTbUserExp": "UPDATE tb_user SET exp = exp + ? WHERE id = ?",
+    "deleteTbUser": "DELETE FROM tb_user WHERE id = ?"
+  },
+  "testCacheOnly": {
+    "selectTbUserMissionRows": "SELECT * FROM tb_user_mission WHERE ??=? AND id_event = ? AND id_group = ?",
+    "insertTbUserMission": "INSERT INTO tb_user_mission (`id_user`, `id_event`, id_group, `code`, curr, need, reward, time_created, time_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    "upsertTbUserMission": "INSERT INTO tb_user_mission (`id_user`, `id_event`, id_group, `code`, time_created, time_updated) VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE time_updated = ?",
+    "deleteTbUserMission": "DELETE FROM tb_user_mission WHERE id_user = ? AND id_event = ? AND id_group = ? AND code IN (?)",
+
+    "selectTbWhatRow": "SELECT * FROM tb_what WHERE ??=?",
+    "insertTbWhatBindArr": "INSERT INTO tb_what (`id`, name, `exp`) VALUES (?, ?, ?)",
+    "insertTbWhatBindObj": "INSERT INTO tb_what (id, name, exp) VALUES (:id, :name, :exp)",
+    "upsertTbWhatBindObj": "INSERT INTO tb_what (id, name, exp) VALUES (:id, :name, :exp) ON DUPLICATE KEY UPDATE exp = exp + :addexp",
+    "updateTbWhat": "UPDATE tb_what SET `exp` = `exp` + ? WHERE id = ?",
+    "deleteTbWhat": "DELETE FROM tb_what WHERE id = ?"
+  }
+}

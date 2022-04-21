@@ -1,0 +1,129 @@
+{
+  "test": true,
+  "testTime": true,
+  "port": {
+    "api": 9100,
+    "game": 9200,
+    "chat": 9300
+  },
+  "cluster": {
+    "api": false,
+    "game": false,
+    "chat": false,
+    "// schedule": false
+  },
+  "pubsub": {
+    "vendor": "redis",
+    "rw": {
+      "pubsub": {
+        "host": "pubsub.host",
+        "port": 6379,
+        "user": null,
+        "pass": null,
+        "dbnm": 15
+      }
+    }
+  },
+  "session": {
+    "vendor": "redis",
+    "rw": {
+      "session": {
+        "host": "session.host",
+        "port": 6379,
+        "user": null,
+        "pass": null,
+        "dbnm": 14,
+        "mode": ["legacyMode"]
+      }
+    }
+  },
+  "db": {
+    "verbose": true,
+    "vendor": "mysql",
+    "r": {
+      "user": [
+        {
+          "host": "db-slave.host",
+          "port": 3306,
+          "user": "test",
+          "pass": "test",
+          "dbnm": "test",
+          "pool": 8
+        }
+      ]
+    },
+    "w": {
+      "user": [
+        {
+          "host": "db-master.host",
+          "port": 3306,
+          "user": "test",
+          "pass": "test",
+          "dbnm": "test",
+          "pool": 8
+        }
+      ]
+    }
+  },
+  "cache": {
+    "verbose": true,
+    "vendor": "redis",
+    "rw": {
+      "user": {
+        "host": "cache.host",
+        "port": 6379,
+        "user": null,
+        "pass": null,
+        "dbnm": 0
+      }
+    }
+  },
+  "dbWriteAsync": false,
+  "dbWriteAsyncExecChunksize": 100,
+  "dbWriteAsyncExecChunksizeOnDestroy": 10000,
+  "cacheTTL": 0,
+  "prefixSocketPacket": {
+    "s2s": "s2s_",
+    "recv": "",
+    "send": "",
+    "error": ""
+  },
+  "ssl": {
+    "key": null,
+    "cert": null
+  },
+  "logLevel": "debug",
+  "logDir": "log",
+  "logExtension": "log",
+  "logSplit": 10,
+  "cryptSecret": "l0hx507m",
+  "sessionSecret": "9e07qp8V",
+  "timeout": {
+    "default": 0,
+    "npm-package-name": 0,
+    "your-application-name": 0,
+    "your-domain.com": 0
+  },
+  "iap": {
+    "vendors": {
+      "LocalTest": 0,
+      "AppleAppStore": 1,
+      "GooglePlay": 2,
+      "// WebGL": 3
+    },
+    "config": {
+      "test": true,
+      "verbose": true
+    }
+  },
+  "cdn": {
+    "s3": {
+      "host": "https://...",
+      "path": "/ab/c",
+      "accessKeyId": "...",
+      "secretAccessKey": "..."
+    }
+  },
+  "hedera": "...",
+  "otherService": "..."
+}

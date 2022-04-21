@@ -1,0 +1,28 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Launch api",
+      "skipFiles": ["<node_internals>/**", "${workspaceFolder}/node_modules/**"],
+      "program": "${workspaceFolder}\\src\\index.js",
+      "args": ["--server-name=api"],
+      "runtimeArgs": ["--inspect"],
+      "outputCapture": "std"
+    },
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Launch game",
+      "skipFiles": ["<node_internals>/**", "${workspaceFolder}/node_modules/**"],
+      "program": "${workspaceFolder}\\src\\index.js",
+      "args": ["--server-name=game"],
+      "runtimeArgs": ["--inspect"],
+      "outputCapture": "std"
+    }
+  ]
+}
