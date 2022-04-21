@@ -239,7 +239,7 @@ $ node src/index.js --server-name=api --cluster-cnt=2    # cluster count to 2 fo
   "hardware": { "cpu": "AMD Ryzen 5 3600 6-Core Processor 3.60 GHz", "mem": "32 GB", "disk": "HDD" },
 
   "server": { "version": "ubuntu 20.04 64bit", "cpu": 6, "mem": "16 GB" },
-  // from { "Guest": "Oracle VirtualBox", "Host": "Windows 10" },
+  "server-from": { "Guest": "Oracle VirtualBox", "Host": "Windows 10" },
   "nodejs": { "version": "v14.18.0", "cluster": 4 },
   "mysql": { "version": "14.14 Distrib 5.7.32, for Linux (x86_64)", "LimitNOFILE": 50000, "max_connections": 10000, "max_connect_errors": 10000 },
   "redis": { "version": "6.2.6", "LimitNOFILE": 100000, "save": "", "io-threads": 4, "maxclients": 100000 },
