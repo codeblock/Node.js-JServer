@@ -57,8 +57,8 @@ class LexSet {
   /** @type {string}        */ table;
   /** @type {Array<string>} */ field;
   /** @type {Array<string>} */ index;
-  /** @type {any}           */ where; // string @todo 정리
-  /** @type {any}           */ group; // string @todo 정리
+  /** @type {string}        */ where;
+  /** @type {string}        */ group;
   /** @type {Array<string>} */ order;
   /** @type {Array<number>} */ limit;
   /** @type {boolean}       */ nottl;
