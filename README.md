@@ -110,7 +110,7 @@ $ npm install
 
 3. modify the port / cluster on your needs
 
-   ```json
+   ```
    {
      ...
      "port": {
@@ -157,7 +157,7 @@ When using the `dbWriteAsync` configuration, `cacheTTL` should be 0. (Cache must
 
 Because must be readable on update mode.
 
-```json
+```
 {
     ...
     "dbWriteAsync": true,
@@ -213,7 +213,7 @@ $ node src/index.js --server-name=api
 
 ### cluster
 
-```json
+```
 {
   ...
   "cluster": {
@@ -311,6 +311,12 @@ $ node src/index.js --server-name=api --cluster-cnt=2    # cluster count to 2 fo
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+## Donation
+
+If this project help you reduce time to develop, you can give me a cup of coffee :)
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/windows){:target="\_blank"}
 
 ## License
 
