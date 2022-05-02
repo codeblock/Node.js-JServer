@@ -316,7 +316,7 @@ Please make sure to update tests as appropriate.
 
 If this project help you reduce time to develop, you can give me a cup of coffee :)
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/windows){:target="\_blank"}
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/windows)
 
 ## License
 
