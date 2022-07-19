@@ -10,6 +10,10 @@
     // curl 'http://appl.host/socket.io/?EIO=4&transport=polling'
     // var url = 'wss://api.upbit.com/websocket/v1';
 
+    const CONNECTOR_TYPE = {
+      IO: 1,
+      WS: 2,
+    };
     let purews = null;
     let socketio = null;
 
@@ -328,12 +332,13 @@
       if (purews != null) {
         purews.close();
       }
+
       switch (which) {
-        case 1:
+        case CONNECTOR_TYPE.IO:
           initIO();
           writeLog('initialized using by socket.io-client');
           break;
-        case 2:
+        case CONNECTOR_TYPE.WS:
           initWS();
           writeLog('initialized using by pure WebSocket');
           break;
@@ -344,24 +349,45 @@
       output = document.getElementById('output');
       initComponent();
 
-      var socket_io = document.getElementById('socket_io');
-      var socket_ws = document.getElementById('socket_ws');
+      let socket_io = document.getElementById('socket_io');
+      let socket_ws = document.getElementById('socket_ws');
+      let connector_type = null;
+      let connector_mode = null;
 
       socket_io.onclick = function () {
+        if (connector_mode == CONNECTOR_TYPE.IO) {
+          writeLog('already selected socket.io-client');
+          return;
+        }
         writeLog('');
         writeLog('');
         writeLog('');
-        loadConnector(1);
+        loadConnector(CONNECTOR_TYPE.IO);
+        connector_mode = CONNECTOR_TYPE.IO;
       };
       socket_ws.onclick = function () {
+        if (connector_mode == CONNECTOR_TYPE.WS) {
+          writeLog('already selected WebSocket');
+          return;
+        }
         writeLog('');
         writeLog('');
         writeLog('');
-        loadConnector(2);
+        loadConnector(CONNECTOR_TYPE.WS);
+        connector_mode = CONNECTOR_TYPE.WS;
       };
 
-      socket_io.checked = true;
-      loadConnector(1);
+      if (socket_io.checked == true) {
+        connector_type = CONNECTOR_TYPE.IO;
+      } else if (socket_ws.checked == true) {
+        connector_type = CONNECTOR_TYPE.WS;
+      } else {
+        connector_type = CONNECTOR_TYPE.IO;
+        socket_io.checked = true;
+      }
+
+      loadConnector(connector_type);
+      connector_mode = connector_type;
     });
   </script>
 
